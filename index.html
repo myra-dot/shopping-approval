@@ -1,6 +1,46 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#6d4aff"><meta name="description" content="两个人一起用的购物审批清单">
-<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./assets/icon.svg"><title>购物审批</title><link rel="stylesheet" href="./styles.css">
-</head><body><div id="app"></div><div id="toast-root" aria-live="polite"></div><script type="module" src="./src/app.js"></script></body></html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6d4aff">
+<meta name="description" content="两个人一起用的购物审批清单">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
+<title>购物审批</title>
+<link rel="stylesheet" href="./styles.css">
+<style>
+#boot-diagnostic{max-width:520px;margin:40px auto;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#17171c}
+#boot-diagnostic .box{background:#fff;border-radius:18px;padding:18px;box-shadow:0 8px 30px #1f184011;line-height:1.6;word-break:break-word}
+#boot-diagnostic code{display:block;margin-top:12px;padding:10px;background:#f4f3f8;border-radius:10px;font-size:12px;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast-root" aria-live="polite"></div>
+<div id="boot-diagnostic"><div class="box">正在启动购物审批…</div></div>
+<script>
+(function(){
+  window.__showBootError=function(error){
+    var d=document.getElementById('boot-diagnostic');
+    if(!d)return;
+    var msg=error&&error.message?error.message:String(error||'未知错误');
+    var stack=error&&error.stack?error.stack:'';
+    d.innerHTML='<div class="box"><b>启动失败</b><div>请把下面这段错误发给我：</div><code></code></div>';
+    d.querySelector('code').textContent=msg+(stack?'\n\n'+stack:'');
+  };
+  window.addEventListener('error',function(e){window.__showBootError(e.error||e.message)});
+  window.addEventListener('unhandledrejection',function(e){window.__showBootError(e.reason)});
+})();
+</script>
+<script type="module">
+import('./src/app.js?v=20260903-2').then(function(){
+  var d=document.getElementById('boot-diagnostic');
+  if(d)d.remove();
+}).catch(function(error){window.__showBootError(error)});
+</script>
+<script nomodule>
+document.getElementById('boot-diagnostic').innerHTML='<div class="box"><b>启动失败</b><div>当前浏览器不支持此网页所需的 JavaScript 模块。</div><code>NO_ES_MODULE_SUPPORT</code></div>';
+</script>
+</body>
+</html>
