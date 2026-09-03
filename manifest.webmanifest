@@ -1,0 +1,13 @@
+{
+  "name": "两个人的购物审批",
+  "short_name": "购物审批",
+  "description": "两个人一起决定想买的东西",
+  "start_url": "/shopping-approval/",
+  "scope": "/shopping-approval/",
+  "display": "standalone",
+  "background_color": "#f7f7fb",
+  "theme_color": "#6d4aff",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
