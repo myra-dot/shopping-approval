@@ -11,7 +11,8 @@ test('uses built-in project config', () => {
 
 test('detects supported push environment', () => {
   const result = detectPushCapability({
-    navigator: { serviceWorker: {}, PushManager: function() {} },
+    navigator: { serviceWorker: {} },
+    PushManager: function() {},
     Notification: { permission: 'default' }
   });
   assert.equal(result.supported, true);
