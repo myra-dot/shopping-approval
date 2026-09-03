@@ -1,15 +1,14 @@
-const KEY = 'shopping-approval-supabase-config';
+export const SUPABASE_URL = 'https://dyxhlzkexocssniiubxh.supabase.co';
+export const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_oe0TUd3KwdVEiduqkO7rlA_QrSdBpL4';
+
+export function getSupabaseConfig() {
+  return { url: SUPABASE_URL, key: SUPABASE_PUBLISHABLE_KEY };
+}
+
+// Compatibility aliases for the original modular client.
 export function getConfig() {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return null;
-    const value = JSON.parse(raw);
-    if (!value.url || !value.anonKey) return null;
-    return value;
-  } catch { return null; }
+  return { url: SUPABASE_URL, anonKey: SUPABASE_PUBLISHABLE_KEY };
 }
-export function saveConfig(config) {
-  localStorage.setItem(KEY, JSON.stringify({ url: config.url.trim().replace(/\/$/, ''), anonKey: config.anonKey.trim() }));
-}
-export function clearConfig() { localStorage.removeItem(KEY); }
-export function isCloudConfigured() { return Boolean(getConfig()); }
+export function saveConfig() {}
+export function clearConfig() {}
+export function isCloudConfigured() { return true; }
